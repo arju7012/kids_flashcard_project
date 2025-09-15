@@ -1,0 +1,160 @@
+/* --- General & Bootstrap Overrides --- */
+body {
+    font-family: 'Nunito', sans-serif;
+    background-color: #F0F8FF; /* AliceBlue */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+h1, h2, h3 {
+    font-weight: 900; /* Extra bold for kid-friendly headers */
+    font-size: 2rem;
+}
+
+
+
+/* --- Header & Footer --- */
+.main-header {
+    background: linear-gradient(135deg, #6DD5FA, #2980B9);
+    height: 60px;
+}
+
+.main-footer {
+    background-color: #f8f9fa;
+    color: #6c757d;
+    font-weight: 700;
+}
+
+
+/* --- Homepage Deck Cards --- */
+.deck-card-link {
+    text-decoration: none;
+}
+
+.deck-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.deck-card:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 1rem 3rem rgba(0,0,0,.175)!important;
+}
+
+.deck-icon {
+    font-size: 4rem;
+}
+
+.deck-title {
+    font-size: 1.5rem;
+    font-weight: 900;
+}
+
+
+/* --- Flashcard Learning Page --- */
+.learn-container {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    overflow: hidden;
+}
+
+.flashcard-scene {
+    width: 500px;
+    height: 550px;
+    perspective: 1500px;
+}
+.flashcard {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.8s cubic-bezier(0.76, 0, 0.24, 1);
+}
+.flashcard.is-flipped {
+    transform: rotateY(180deg);
+}
+
+.card-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 30px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* --- FRONT CARD --- */
+.card-front {
+    background-color: #fff;
+}
+.front-text {
+    font-size: 2rem;
+    font-weight: 900;
+    color: #FF6347;
+    margin: 0;
+}
+.front-image-container {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+.front-image-container img {
+    max-width: 90%;
+    max-height: 100%;
+}
+.front-buttons {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+.sound-button {
+    font-size: 2.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #0d6efd;
+    transition: transform 0.2s;
+}
+.sound-button:hover {
+    transform: scale(1.1);
+}
+
+/* --- BACK CARD --- */
+.card-back {
+    background: linear-gradient(135deg, #9EFB98, #60C657); /* Light green gradient */
+    transform: rotateY(180deg);
+    padding: 15px;
+}
+.back-video {
+    width: 100%;
+    height: 75%;
+    border-radius: 20px;
+    background-color: black;
+}
+.back-card-text {
+    font-weight: 700;
+    color: #333;
+    font-size: 1.5rem;
+    margin-top: 15px;
+}
+
+/* --- Navigation --- */
+.learn-nav {
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(5px);
+}

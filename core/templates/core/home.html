@@ -1,10 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Home</title>
-</head>
-<body>
-    <h1>Hi 👋 This is the home Page</h1>
-</body>
-</html>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Welcome! - Kids Flashcards Fun!{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row g-4">
+        {% for deck in decks %}
+        <div class="col-lg-3 col-md-4 col-6">
+            <a href="{% url 'learn_deck' deck.id %}" class="deck-card-link">
+                <div class="deck-card text-white text-center p-3 rounded-4 shadow" style="background-color: {{ deck.color }};">
+                    <div class="deck-icon">{{ deck.icon }}</div>
+                    <h2 class="deck-title mt-2">{{ deck.name }}</h2>
+                </div>
+            </a>
+        </div>
+        {% empty %}
+        <div class="col-12">
+            <div class="alert alert-warning text-center">
+                <h3>No Decks Found!</h3>
+                <p>Please go to the admin panel to create some fun flashcard decks.</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
