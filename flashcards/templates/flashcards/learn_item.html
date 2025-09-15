@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Learning {{ deck.name }} - Kids Flashcards Fun!{% endblock %}
+
+{% block content %}
+<div class="learn-container">
+    {% if card %}
+    
+    <div class="flashcard-scene">
+        <div class="flashcard" id="flashcard">
+            <div class="card-face card-front">
+                <h2 class="front-text">{{ card.front_text }}</h2>
+                <div class="front-image-container">
+                    <img src="{{ card.front_image.url }}" alt="Question Image">
+                </div>
+                <div class="front-buttons">
+                    {% if card.front_audio %}
+                        <button class="sound-button" id="front-audio-button">🔊</button>
+                        <audio id="front-audio" src="{{ card.front_audio.url }}"></audio>
+                    {% endif %}
+                    <button id="flip-button" class="btn btn-warning btn-lg rounded-pill shadow">Show Answer</button>
+                </div>
+            </div>
+
+            <div class="card-face card-back">
+                <video id="back-video" class="back-video" controls>
+                    <source src="{{ card.back_video.url }}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <p class="back-card-text">{{ card.back_text }}</p>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <div class="container text-center">
+        <div class="alert alert-info">
+            <h2>Oops! No cards in this deck yet.</h2>
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+<nav class="learn-nav d-flex justify-content-around align-items-center p-3">
+    {% if prev_card_index is not None %}
+        <a href="{% url 'learn_deck' deck.id %}?card={{ prev_card_index }}" class="btn btn-info btn-lg rounded-pill shadow-sm">◀ Previous</a>
+    {% else %}
+        <span class="btn btn-info btn-lg rounded-pill shadow-sm disabled">◀ Previous</span>
+    {% endif %}
+
+    {% if next_card_index is not None %}
+        <a href="{% url 'learn_deck' deck.id %}?card={{ next_card_index }}" class="btn btn-primary btn-lg rounded-pill shadow-sm">Next ▶</a>
+    {% else %}
+        {% if card %}
+        <a href="{% url 'home' %}" class="btn btn-success btn-lg rounded-pill shadow-sm">Finish 🎉</a>
+        {% endif %}
+    {% endif %}
+</nav>
+{% endblock %}
+
+
+{% block scripts %}
+<script src="{% static 'flashcards/js/script.js' %}"></script>
+{% endblock %}

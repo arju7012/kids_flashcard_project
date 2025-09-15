@@ -1,6 +1,9 @@
+# flashcards/urls.py
+
 from django.urls import path
-from . import views
+from .views import learn_deck_view
 
 urlpatterns = [
-    path('', views.flashcard_home, name='flashcards_home'),
+    # Example URL: /flashcards/deck/1/
+    path('deck/<int:deck_id>/', learn_deck_view, name='learn_deck'),
 ]
