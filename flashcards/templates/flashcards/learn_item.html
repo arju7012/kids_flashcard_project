@@ -6,7 +6,6 @@
 {% block content %}
 <div class="learn-container">
     {% if card %}
-    
     <div class="flashcard-scene">
         <div class="flashcard" id="flashcard">
             <div class="card-face card-front">
@@ -35,27 +34,29 @@
     {% else %}
     <div class="container text-center">
         <div class="alert alert-info">
-            <h2>Oops! No cards in this deck yet.</h2>
+            <h2>Hooray! No cards due right now.</h2>
+            <p class="mb-0">You can come back later to review more cards, or add new ones in the admin panel.</p>
         </div>
     </div>
     {% endif %}
 </div>
 
-<nav class="learn-nav d-flex justify-content-around align-items-center p-3">
-    {% if prev_card_index is not None %}
-        <a href="{% url 'learn_deck' deck.id %}?card={{ prev_card_index }}" class="btn btn-info btn-lg rounded-pill shadow-sm">◀ Previous</a>
-    {% else %}
-        <span class="btn btn-info btn-lg rounded-pill shadow-sm disabled">◀ Previous</span>
-    {% endif %}
+<nav class="learn-nav d-flex justify-content-center align-items-center p-3">
+    <div id="page-navigation" class="d-flex justify-content-around w-100">
+        <span class="btn btn-secondary btn-lg rounded-pill shadow-sm disabled">◀ Previous</span>
+        <a href="{% url 'home' %}" class="btn btn-light btn-lg rounded-pill shadow-sm">Finish 🎉</a>
+    </div>
 
-    {% if next_card_index is not None %}
-        <a href="{% url 'learn_deck' deck.id %}?card={{ next_card_index }}" class="btn btn-primary btn-lg rounded-pill shadow-sm">Next ▶</a>
-    {% else %}
+    <div id="answer-buttons" class="d-none">
         {% if card %}
-        <a href="{% url 'home' %}" class="btn btn-success btn-lg rounded-pill shadow-sm">Finish 🎉</a>
+            <a href="{% url 'process_review' card.id 'again' %}" class="btn btn-danger btn-lg rounded-pill shadow-sm">Again 😢</a>
+            <a href="{% url 'process_review' card.id 'hard' %}" class="btn btn-warning btn-lg rounded-pill shadow-sm">Hard 🤔</a>
+            <a href="{% url 'process_review' card.id 'good' %}" class="btn btn-success btn-lg rounded-pill shadow-sm">Good 🙂</a>
+            <a href="{% url 'process_review' card.id 'easy' %}" class="btn btn-info btn-lg rounded-pill shadow-sm">Easy 😄</a>
         {% endif %}
-    {% endif %}
+    </div>
 </nav>
+
 {% endblock %}
 
 
