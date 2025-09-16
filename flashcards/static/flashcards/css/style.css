@@ -66,8 +66,8 @@ h1, h2, h3 {
 }
 
 .flashcard-scene {
-    width: 500px;
-    height: 550px;
+    width: 600px;
+    height: 600px;
     perspective: 1500px;
 }
 .flashcard {
