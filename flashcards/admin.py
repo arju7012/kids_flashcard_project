@@ -2,6 +2,7 @@
 
 from django.contrib import admin
 from .models import Deck, Card
+from .models import Deck, Card, UserProgress # Import UserProgress
 
 class CardInline(admin.TabularInline):
     model = Card
@@ -19,3 +20,9 @@ class CardAdmin(admin.ModelAdmin):
     # Add front_text to the main list display
     list_display = ('front_text', 'deck', 'front_image')
     list_filter = ('deck',)
+
+
+@admin.register(UserProgress)
+class UserProgressAdmin(admin.ModelAdmin):
+    list_display = ('user', 'card', 'mastery_level', 'next_review_date')
+    list_filter = ('user', 'mastery_level')
