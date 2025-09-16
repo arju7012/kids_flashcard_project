@@ -9,6 +9,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('core.urls')), # Include URLs from the core app for the homepage
     path('flashcards/', include('flashcards.urls')), # Include URLs from the flashcards app
+    path('users/', include('users.urls')),
 ]
 
 # This is important for serving media files during development
